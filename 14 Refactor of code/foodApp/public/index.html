@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+</head>
+
+<body>
+    <form>
+        <label>Email</label>
+        <input id="email" type="email">
+        <label>Name</label>
+        <input id="name" type="text">
+        <label>Password</label>
+        <input id="password" type="password">
+        <label>confirmPassword</label>
+        <input id="confirmPassword" type="password">
+        <button>Signup</button>
+    </form>
+
+    <!-- axios for making post request from frontend to backend -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        let btn = document.querySelector('button');
+
+        btn.addEventListener('click', async function (e) {
+            e.preventDefault();
+            // selecting values from frontend
+            let email = document.getElementById("email").value;
+            let name = document.getElementById("name").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            // making post request to send the data to backend
+
+            let resp = await axios.post('/auth/signup', { email, name, password, confirmPassword });
+            console.log('resp=>', resp);
+        });
+    </script>
+</body>
+
+</html>
